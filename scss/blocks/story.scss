@@ -1,0 +1,130 @@
+/* story */
+.story {
+    padding: 10em 0 8.7em;
+    position: relative;
+    &__row {
+        @include row();
+        align-items: center;
+        margin-top: -2em;
+        > * {
+            padding-top: 2em;
+        }
+        &--1 {
+            margin-bottom: 1.375em;
+
+            @media (min-width: $break_sm + 1) {
+                align-items: flex-start;
+                .story__col {
+                    &:last-child {
+                        padding-top: 1em;
+                        padding-left: 4.4em;
+                        padding-right: 0.3em;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        &--2 {
+            margin-bottom: 9em;
+            .story__col {
+                &:nth-child(1) {
+                    @media (min-width: $break_sm + 1) {
+                        order: 2;
+                    }
+                }
+
+                &:last-child {
+                    @media (min-width: $break_sm + 1) {
+                        // position: relative;
+                        padding-right: 4.1em;
+                    }
+                }
+            }
+        }
+        &--3 {
+            margin-top: 0;
+            > * {
+                padding-top: 0;
+            }
+        }
+    }
+    &__col {
+        @include col(6);
+        @include col-sm(12);
+    }
+    &__text {
+        width: 37em;
+        p {
+            font-size: 1.125em;
+            line-height: 160%;
+            margin-bottom: 0.5em;
+        }
+    }
+    &__img {
+    }
+    &__half-text {
+        font-size: 1.125em;
+        line-height: 160%;
+        margin-bottom: 0.5em;
+        columns: 2;
+        column-gap: 50px;
+    }
+    .subtitle {
+        margin-bottom: 0.5em;
+    }
+    &__circle {
+        position: absolute;
+        top: 19em;
+        left: 75em;
+        img {
+            width: 13.5em;
+        }
+    }
+    &__line {
+        position: absolute;
+        top: 18em;
+        left: 30em;
+        svg {
+            width: 61.9em;
+            height: 87em;
+            overflow: visible;
+            // transform: scaleY(-1);
+        }
+
+        .pathBall {
+            position: relative;
+            z-index: 5;
+            // transform: rotate(180deg);
+        }
+    }
+    @media (max-width: $break_sm) {
+        padding: 5em 0;
+        &__text {
+            width: 100%;
+        }
+        &__row {
+            &--1 {
+                margin-bottom: 2.5em;
+            }
+            &--2 {
+                margin-bottom: 2.5em;
+            }
+        }
+        &__img {
+            text-align: center;
+        }
+        &__half-text {
+            columns: 1;
+        }
+        &__circle {
+            display: none;
+        }
+        &__line {
+            display: none;
+        }
+    }
+}
+/* /story */
