@@ -15,24 +15,47 @@ function contacts_part_fields($settings, $type, $id, $meta_type, $types)
 			array(
 				array(
 					'name'        => 'contacts__addres',
-					'label'       => 'Company address',
-					'type'        => 'textarea',
+					'label'       => 'Hollivood address',
+					'type'        => 'wysiwyg',
 				),
 				array(
 					'name'        => 'contacts__tel',
-					'label'       => 'Company phone',
+					'label'       => 'Hollivood phone',
 					'type'        => 'text',
 					'notes'       => ''
 				),
 				array(
 					'name'        => 'contacts__email_general',
-					'label'       => 'Company general email',
+					'label'       => 'Hollivood general email',
 					'type'        => 'text',
 					'notes'       => ''
 				),
 				array(
 					'name'        => 'contacts__email',
-					'label'       => 'Company promotional email',
+					'label'       => 'Hollivood promotional email',
+					'type'        => 'text',
+					'notes'       => ''
+				),
+				array(
+					'name'        => 'contacts__addres2',
+					'label'       => 'Venice address',
+					'type'        => 'wysiwyg',
+				),
+				array(
+					'name'        => 'contacts__tel2',
+					'label'       => 'Venice phone',
+					'type'        => 'text',
+					'notes'       => ''
+				),
+				array(
+					'name'        => 'contacts__email_general2',
+					'label'       => 'Venice general email',
+					'type'        => 'text',
+					'notes'       => ''
+				),
+				array(
+					'name'        => 'contacts__email2',
+					'label'       => 'Venice promotional email',
 					'type'        => 'text',
 					'notes'       => ''
 				),

@@ -101,7 +101,7 @@ get_header();
 	<div class="presentation__fly">
 		<img src="<?php echo get_template_directory_uri() . '/img/flying/img-19.png' ?>" alt="">
 	</div>
-	<a class="presentation__arrow" href="<?php echo SCF::get('guaranteed__link'); ?>"> <img src="<?php echo get_template_directory_uri() . '/img/arrow.svg' ?>" alt=""></a>
+	<a class="presentation__arrow" href="<?php echo SCF::get('guaranteed__link'); ?>"> <img src="<?php echo get_template_directory_uri() . '/img/reviews-btn.png' ?>" alt=""></a>
 	<div class="wrapper">
 		<div class="presentation__content">
 			<div class="subtitle subtitle--white"><?php echo SCF::get('guaranteed__title'); ?></div>
@@ -115,8 +115,8 @@ get_header();
 			<video src="<?php echo wp_get_attachment_url(SCF::get('guaranteed__video')); ?>" autoplay playsinline loop muted preload="auto"></video>
 		<?php
 		} else {
+			echo wp_get_attachment_image(SCF::get('guaranteed__img'), 'full');
 		}
-		echo wp_get_attachment_image(SCF::get('guaranteed__img'), 'full');
 		?>
 	</div>
 </div>

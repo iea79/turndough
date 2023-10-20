@@ -24,18 +24,21 @@ $break_sm: 768px;
 $break_xs: 500px;
 
 img {
-  height: auto;
+    height: auto;
 }
 
 // Шрифты
-@include font-face("Kelpo", "fonts/kelpo_DEMO/FontsFree-Net-KelpoDemo-MVv9J", normal, normal, $exts: woff2 woff ttf);
-@include font-face("Roboto", "fonts/roboto/roboto-v30-latin-regular", normal, normal, $exts: woff2 woff ttf);
-@include font-face("Roboto", "fonts/roboto/roboto-v30-latin-500", 500, normal, $exts: woff2 woff ttf);
+@include font-face('Kelpo', 'fonts/kelpo_DEMO/Kelpo', normal, normal, $exts: woff2 woff ttf svg);
+@include font-face('Roboto', 'fonts/roboto/roboto-v30-latin-regular', normal, normal, $exts: woff2 woff ttf);
+@include font-face('Roboto', 'fonts/roboto/roboto-v30-latin-500', 500, normal, $exts: woff2 woff ttf);
 
 // Цвета
-$primary_color: #EC0187;
-$secondary_color: #99DDE3;
-$text_color: #AE909D;
+// $primary_color: #b90069;
+$primary_color: #ec0187;
+// $secondary_color: #2d8997;
+// $secondary_color: #3ebacc;
+$secondary_color: #99dde3;
+$text_color: #82616f;
 
 @import 'blocks/settings';
 // @import 'hamburgers/hamburgers';
@@ -68,16 +71,29 @@ $text_color: #AE909D;
 @import 'blocks/footer';
 // @import 'blocks/menu';
 
-
-
 .product-card__img {
-  padding-top: 1em;
+    padding-top: 1em;
 
-  img {
-      display: block;
-      object-fit: contain;
-      object-position: bottom;
-      width: 100%;
-      height: 100%;
-  }
+    img {
+        display: block;
+        object-fit: contain;
+        object-position: bottom;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.js-parallaxMouse {
+    @media (min-width: 768px) {
+        body:not(.macos) & {
+            transition: transform 0.5s;
+        }
+    }
+}
+
+.container_center {
+    width: 100%;
+    max-width: 91em;
+    margin: auto;
+    padding: 0 20px;
 }

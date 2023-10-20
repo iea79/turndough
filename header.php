@@ -26,16 +26,16 @@
 
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
-	<div class="page">
-		<!-- header-->
-		<header class="header" id="headerSticky">
-			<div class="wrapper">
-				<div class="header__btn"><a class="btn" href="/our-story/"> <span>Our story</span></a></div>
-				<div class="header__logo">
-					<?php echo get_custom_logo() ?>
-				</div>
-				<div class="header__btn"> <a class="btn" href="/menu/">Our menu</a></div>
+	<!-- <div class="page"> -->
+	<!-- header-->
+	<header class="header" id="headerSticky" role="banner">
+		<div class="wrapper">
+			<div class="header__btn"><a class="btn" role="link" title="Link to story" href="/our-story/"> <span>Our story</span></a></div>
+			<div class="header__logo">
+				<?php echo get_custom_logo() ?>
 			</div>
-		</header>
-		<!--	/header-->
-		<div class="content">
+			<div class="header__btn"> <a class="btn" role="link" title="Link to menu" href="/menu/">Our menu</a></div>
+		</div>
+	</header>
+	<!--	/header-->
+	<main class="content" role="main">

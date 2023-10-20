@@ -82,8 +82,13 @@ function home_benefit_section_fields($settings, $type, $id, $meta_type, $types)
 				),
 				array(
 					'name'        => 'benefit__insta',
-					'label'       => 'Section instagram link',
+					'label'       => 'Section link',
 					'type'        => 'text',
+				),
+				array(
+					'name'        => 'benefit__insta_btn',
+					'label'       => 'Section link image',
+					'type'        => 'image',
 				),
 			)
 		);
@@ -134,12 +139,11 @@ function home_product_section_fields($settings, $type, $id, $meta_type, $types)
 					'type'        => 'wysiwyg',
 				),
 				array(
-					'type'        => 'taxonomy',
+					'type'        => 'relation',
 					'name'        => 'product__cat',
 					'label'       => 'Category',
-					'taxonomy'    => array('product-category'),
-					'limit'       => 1,
-					'notes'       => 'All products in one category',
+					'post-type'    => array('products'),
+					'limit'       => 0,
 				),
 			)
 		);
@@ -181,6 +185,11 @@ function home_besides_section_fields($settings, $type, $id, $meta_type, $types)
 				array(
 					'name'        => 'besides__list_title',
 					'label'       => 'List title',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'besides__list_link',
+					'label'       => 'List link',
 					'type'        => 'text',
 				),
 				array(

@@ -160,9 +160,13 @@ function frondendie_scripts()
 	wp_enqueue_script('ScrollTrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('MotionPath', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('swiper-slider', get_template_directory_uri() . '/js/plugins/swiper-bundle.min.js', array(), _S_VERSION, true);
+	wp_enqueue_script('relax-js', get_template_directory_uri() . '/js/plugins/relax.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('site-js', get_template_directory_uri() . '/js/scripts.js', array('jquery', 'swiper-slider'), _S_VERSION, true);
+	if (is_singular('products')) {
+		wp_enqueue_style('product-style', get_template_directory_uri() . '/css/product.css', array(), _S_VERSION);
+	}
 	if (is_front_page()) {
-		wp_enqueue_script('gmap-js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVY9bdJtxFyjxthJGdsXG7G7A6jXPRFJg&callback=initMap', array('site-js'), _S_VERSION, true);
+		wp_enqueue_script('gmap-js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVY9bdJtxFyjxthJGdsXG7G7A6jXPRFJg&&callback=initMap', array('site-js'), _S_VERSION, true);
 	}
 }
 add_action('wp_enqueue_scripts', 'frondendie_scripts');
@@ -320,3 +324,4 @@ function reviews_register_post_type_init()
  */
 require get_template_directory() . '/scf/reviews.php';
 require get_template_directory() . '/scf/story.php';
+require get_template_directory() . '/scf/menu.php';

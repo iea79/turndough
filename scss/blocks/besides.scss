@@ -1,118 +1,120 @@
 /* besides */
-.besides { 
-  min-height: 50.6875em;
-  padding: 9.5em 0;
-  background-color: #FCD9EE;
-  position: relative;
-  .wrapper {
+.besides {
+    min-height: 50.6875em;
+    padding: 9.5em 0;
+    background-color: #fae6f2;
     position: relative;
-  }
-  .subtitle {
-    width: 11em;
-    margin-bottom: 0.3em;
-  }
-  &__text {
-    width: 23em;
-    font-size: 1.125em;
-    line-height: 140%;
-    margin-bottom: 3.5em;
-  }
-  &__item {
-    display: flex;
-    align-items: center;
-    font-family: "Kelpo";
-    font-size: 2em;
-    line-height: 90%;
-    text-transform: uppercase;
-    color: $primary_color;
-    img {
-      width: 5.5em;
-      margin-top: -1em;
-      margin-right: 0.5em;
+    .wrapper {
+        position: relative;
     }
-    span {
-
-    }
-    @media (min-width: $break_sm + 1) {
-      &--0 {
-        margin-left: -1em;
-      }
-      &--1 {
-        position: absolute;
-        top: -1.5em;
-        right: 8.3em;
-      }
-      &--2 {
-        position: absolute;
-        top: 5em;
-        right: 0.5em;
-      }
-      &--3 {
-        position: absolute;
-        top: 11.1em;
-        right: 8.5em;
-      }
-      &--4 {
-        position: absolute;
-        top: 5em;
-        right: 15em;
-      }
-    }
-  }
-  &__fly-1 {
-    position: absolute;
-    top: -1em;
-    left: 9.5em;
-    z-index: 1;
-    img {
-      width: 3em;
-    }
-  }
-  &__fly-2 {
-    position: absolute;
-    top: -4.5em;
-    right: 51em;
-    z-index: 1;
-    img {
-      width: 12em;
-    }
-  }
-  &__fly-3 {
-    position: absolute;
-    top: 8em;
-    right: 4em;
-    z-index: 1;
-    img {
-      width: 4em;
-    }
-  }
-  @media (max-width: $break_sm) {
-    padding: 5em 0;
     .subtitle {
-      width: 100%;
+        width: 11em;
+        margin-bottom: 0.3em;
     }
     &__text {
-      width: 100%;
+        width: 23em;
+        font-size: 1.125em;
+        line-height: 140%;
+        margin-bottom: 3.5em;
+
+        color: #b90069;
     }
     &__item {
-      font-size: 1.5em;
-      img {
-        width: 4.5em;
-      }
+        display: flex;
+        align-items: center;
+        font-family: 'Kelpo';
+        font-size: 2em;
+        line-height: 90%;
+        text-transform: uppercase;
+        color: $primary_color;
+        img {
+            width: 6.2em;
+            margin-top: -1em;
+            margin-right: 0.5em;
+        }
+        @media (min-width: $break_sm + 1) {
+            &--0 {
+                margin-left: -1em;
+            }
+            &--1 {
+                position: absolute;
+                top: -1.5em;
+                right: 8.3em;
+            }
+            &--2 {
+                position: absolute;
+                top: 5em;
+                right: 0.5em;
+            }
+            &--3 {
+                position: absolute;
+                top: 11.1em;
+                right: 8.5em;
+            }
+            &--4 {
+                position: absolute;
+                top: 5em;
+                right: 15em;
+            }
+        }
     }
     &__fly-1 {
-      display: none;
+        position: absolute;
+        top: -1em;
+        left: 9.5em;
+        z-index: 1;
+        img {
+            width: 3em;
+        }
     }
     &__fly-2 {
-      top: -2.5em;
-      right: 8em;
-      img {
-        width: 8em;
-      }
+        position: absolute;
+        top: -4.5em;
+        right: 51em;
+        z-index: 1;
+        img {
+            width: 12em;
+        }
     }
     &__fly-3 {
-      display: none;
+        position: absolute;
+        top: 8em;
+        right: 4em;
+        z-index: 1;
+        img {
+            width: 4em;
+        }
     }
-  }
+    @media (max-width: $break_sm) {
+        padding: 5em 0;
+        .subtitle {
+            width: 100%;
+        }
+        &__text {
+            width: 100%;
+        }
+        &__item {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+
+            img {
+                width: 4.5em;
+                margin-top: 0;
+            }
+        }
+        &__fly-1 {
+            display: none;
+        }
+        &__fly-2 {
+            top: -2.5em;
+            right: 8em;
+            img {
+                width: 8em;
+            }
+        }
+        &__fly-3 {
+            display: none;
+        }
+    }
 }
 /* /besides */

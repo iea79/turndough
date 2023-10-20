@@ -10,7 +10,7 @@
       flex-wrap: wrap;
       min-height: 37em;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
   }
   &__bg {
@@ -104,11 +104,11 @@
   }
   &__fly-5 {
     position: absolute;
-    top: -3em;
-    left: 35em;
+    top: -3.5em;
+    left: 33em;
     z-index: 1;
     img {
-      width: 9em;
+      width: 12em;
     }
   }
   &__fly-6 {
@@ -131,11 +131,11 @@
   }
   &__fly-8 {
     position: absolute;
-    top: -3em;
-    left: 48em;
+    top: -4em;
+    left: 47em;
     z-index: 1;
     img {
-      width: 9em;
+      width: 12em;
     }
   }
   &__fly-9 {
@@ -145,6 +145,15 @@
     z-index: 1;
     img {
       width: 14em;
+    }
+  }
+  &__head-fly {
+    position: absolute;
+    top: 2em;
+    left: 3em;
+    z-index: 1;
+    img {
+      width: 113em;
     }
   }
   @media (max-width: $break_sm) {
@@ -194,9 +203,9 @@
     }
     &__fly-5 {
       left: 4em;
-      top: -2em;
+      top: -3em;
       img {
-        width: 6em;
+        width: 9em;
       }
     }
     &__fly-6 {
@@ -230,6 +239,9 @@
         padding-left: 2.6em;
         padding-top: 2.6em;
       }
+    }
+    &__head-fly {
+      display: none;
     }
   }
 }

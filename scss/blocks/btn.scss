@@ -1,34 +1,62 @@
 /* btn */
-.btn { 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.47em 1em 0.53em;
-  border-radius: 5em;
-  border: 0.15em solid $primary_color;
-  background: #FFF5FA;
-  box-shadow: -0.2em 0.2em 0 $primary_color;
-  outline: none;
-  font-family: "Kelpo";
-  font-size: 1.625em;
-  color: $primary_color;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.3s;
-  @media (min-width: $break_sm + 1) {
-    // &:hover {
-    //   box-shadow: -7px 7px 0 $primary_color;
-    //   transform: translate(2px, -2px);
-    // }
-    &:hover {
-      box-shadow: -0.2em 0.2em 0 darken($primary_color, 5%);
-      border-color: darken($primary_color, 5%);
-      background-color: $primary_color;
-      color: #fff;
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.47em 1em 0.53em;
+    border-radius: 5em;
+    border: 0.1875em solid $primary_color;
+    background: #fff5fa;
+    box-shadow: -0.2em 0.2em 0 $primary_color;
+    outline: none;
+    font-family: 'Kelpo';
+    font-size: 1.625em;
+    color: $primary_color;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    @media (min-width: $break_sm + 1) {
+        // &:hover {
+        //   box-shadow: -7px 7px 0 $primary_color;
+        //   transform: translate(2px, -2px);
+        // }
+        &:hover {
+            box-shadow: -0.2em 0.2em 0 darken($primary_color, 5%);
+            border-color: darken($primary_color, 5%);
+            background-color: $primary_color;
+            color: #fff;
+        }
     }
-  }
-  @media (max-width: $break_sm) {
-    font-size: 1.3em;
-  }
+    @media (max-width: $break_sm) {
+        font-size: 1.3em;
+    }
+
+    &_icon {
+        padding-left: 2.6em;
+
+        > i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            border-radius: 1000px;
+            border: 0.1875em solid #ec0187;
+            background: #fff5fa;
+            width: 2.4em;
+            // height: calc(100% + 0.375em);
+            left: -0.187em;
+            top: -0.18em;
+            bottom: -0.18em;
+
+            img {
+                display: block;
+                object-fit: contain;
+                object-position: center;
+                width: 60%;
+                height: 60%;
+            }
+        }
+    }
 }
 /* /btn */
