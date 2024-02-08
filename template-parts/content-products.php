@@ -1,6 +1,15 @@
 <!-- begin productHome -->
 <section id="productHome" class="productHome section dark">
-	<div class="productHome__bg"><?php echo wp_get_attachment_image(SCF::get('first_bg'), 'full') ?></div>
+	<div class="productHome__bg">
+
+		<?php
+		if (SCF::get('first_video')) {
+		?><video src="<?php echo wp_get_attachment_url(SCF::get('first_video')) ?>" autoplay preload="" muted loop></video><?php
+																														} else {
+																															echo wp_get_attachment_image(SCF::get('first_bg'), 'full');
+																														}
+																															?>
+	</div>
 	<div class="container_center">
 		<div class="productHome__content">
 			<div class="productHome__left">
@@ -116,7 +125,8 @@ if (SCF::get('approach_title')) {
 if (SCF::get('build_title')) {
 ?>
 	<!-- begin productBuild -->
-	<section id="productBuild" class="productBuild section">
+	<section id="productBuild" class="productBuild section" style="background-color: <?php echo SCF::get('build_bg') ?>;background-image: url(<?php echo wp_get_attachment_url(SCF::get('build_img')) ?>);">
+
 		<div class="container_center">
 			<h2 class="section__title"><?php echo SCF::get('build_title'); ?></h2>
 			<div class="productBuild__content">
@@ -257,7 +267,7 @@ if ($recommended_list) {
 					$prodId = $product->ID;
 					$scf = SCF::gets($prodId);
 				?>
-					<div class="productRecomend__item">
+					<a href="<?php echo get_the_permalink($prodId) ?>" class="productRecomend__item">
 						<div class="productRecomend__title">
 							<span>
 								<?php echo get_the_title($prodId) ?>
@@ -269,7 +279,7 @@ if ($recommended_list) {
 						<div class="productRecomend__descr">
 							<?php echo $scf['product__ingredients'] ?>
 						</div>
-					</div>
+					</a>
 				<?php
 				};
 				?>
@@ -322,9 +332,9 @@ if ($recommended_list) {
 							<div class="productContact__title">Contact</div>
 						</div>
 						<div class="productContact__text">
-							Promotional: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?><br>
-							General: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?> <br>
-							Phone Number: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?>
+							Promotional: <a href="mailto:<?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?></a><br>
+							General: <a href="mailto:<?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?></a> <br>
+							Phone Number: <a href="tel: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?></a>
 						</div>
 					</div>
 					<div class="productContact__item">
@@ -341,7 +351,7 @@ if ($recommended_list) {
 				</div>
 			</div>
 			<div class="productContact__img">
-				<img src="<?php echo get_template_directory_uri() . '/img/product-contact.png' ?>" alt="">
+				<?php echo wp_get_attachment_image(SCF::get_option_meta('our-contacts', 'backgrounds'), 'full') ?>
 			</div>
 		</div>
 	</div>
@@ -353,79 +363,4 @@ if ($recommended_list) {
 </section>
 <!-- end productContact -->
 
-<!-- begin productReview -->
-<?php
-$reviews = get_posts([
-	'post_type' => 'reviews'
-]);
-if ($reviews) {
-?>
-	<section id="productReview" class="productReview section">
-		<div class="productReview__bg">
-			<img src="<?php echo get_template_directory_uri() . '/img/product-review.png' ?>" alt="">
-		</div>
-		<div class="container_center">
-			<div class="productReview__content">
-				<h2 class="section__title">Reviews</h2>
-				<div class="review__slider">
-					<div class="review__block">
-						<div class="review__triangle"> </div>
-						<div id="slideReview">
-							<div class="swiper-wrapper">
-								<?php
-								foreach ($reviews as $key => $review) {
-									$scf = SCF::gets($review->ID);
-								?>
-									<div class="swiper-slide">
-										<p><?php
-											echo $scf['review__text'];
-											?></p>
-										<div class="review__raiting">
-											<?php
-											for ($i = 0; $i < (int)$scf['review__stars']; $i++) {
-												echo '<div class="review__star"> </div>';
-											}
-											?>
-										</div>
-									</div>
-								<?php
-								}
-								?>
-							</div>
-						</div>
-					</div>
-					<div class="review__button review__button--prev swiper-button-prev">
-						<svg class="icon-arrow">
-							<use xlink:href="<?php echo get_template_directory_uri() . '/img/sprite.svg#arrow' ?>"></use>
-						</svg>
-					</div>
-					<div class="review__button review__button--next swiper-button-next">
-						<svg class="icon-arrow">
-							<use xlink:href="<?php echo get_template_directory_uri() . '/img/sprite.svg#arrow' ?>"></use>
-						</svg>
-					</div>
-				</div>
-				<div class="review__thumb">
-					<div id="sliderReviewThumb">
-						<div class="swiper-wrapper">
-							<?php
-							foreach ($reviews as $key => $review) {
-								$scf = SCF::gets($review->ID);
-							?>
-								<div class="swiper-slide">
-									<div class="review__photo">
-										<?php echo wp_get_attachment_image($scf['review__photo'], 'full') ?>
-									</div>
-									<div class="review__name"><?php echo get_the_title($review->ID) ?></div>
-								</div>
-							<?php
-							}
-							?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-<?php } ?>
-<!-- end productReview -->
+<?php require get_template_directory() . '/inc/review.php'; ?>

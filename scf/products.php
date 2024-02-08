@@ -25,6 +25,13 @@ function product_fields($settings, $type, $id, $meta_type, $types)
 					'label'       => 'Product ingredients list',
 					'type'        => 'wysiwyg',
 				),
+				array(
+					'name'        => 'product__cat_img',
+					'label'       => 'Category page image',
+					'type'        => 'image',
+					'size'        => 'medium',
+				),
+
 			)
 		);
 
@@ -50,6 +57,11 @@ function product_first_section($settings, $type, $id, $meta_type, $types)
 					'label'       => 'Section background',
 					'type'        => 'image',
 					'size'        => 'medium',
+				),
+				array(
+					'name'        => 'first_video',
+					'label'       => 'Section background video',
+					'type'        => 'file',
 				),
 				array(
 					'name'        => 'first_btn_icon',
@@ -202,6 +214,17 @@ function product_build_section($settings, $type, $id, $meta_type, $types)
 					'name'        => 'build_title',
 					'label'       => 'Section name',
 					'type'        => 'text',
+				),
+				// array(
+				// 	'type'        => 'colorpicker',
+				// 	'name'        => 'build_bg',
+				// 	'label'       => 'Section background color',
+				// 	'default'     => '#fff',
+				// ),
+				array(
+					'name'        => 'build_img',
+					'label'       => 'Section background image',
+					'type'        => 'image',
 				),
 			)
 		);
@@ -361,3 +384,30 @@ function product_recommended_section($settings, $type, $id, $meta_type, $types)
 	return $settings;
 }
 add_filter('smart-cf-register-fields', 'product_recommended_section', 6, 5);
+
+function product_reviews_section_fields($settings, $type, $id, $meta_type, $types)
+{
+	if ($type === 'products' && get_page_template_slug($id) == '') {
+
+		$Section = SCF::add_setting('product-7', 'Reviews');
+
+		$Section->add_group(
+			'reviews-section',
+			false,
+			array(
+				array(
+					'type'        => 'relation',
+					'name'        => 'review_ids',
+					'label'       => 'Reviews',
+					'post-type'   => array('reviews'),
+					'limit'       => 0,
+				),
+			)
+		);
+
+		$settings[] = $Section;
+	}
+
+	return $settings;
+}
+add_filter('smart-cf-register-fields', 'product_reviews_section_fields', 7, 5);

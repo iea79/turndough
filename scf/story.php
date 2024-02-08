@@ -3,10 +3,13 @@ if (!defined('STORY_PAGE_ID')) {
 	$current_page = get_page_by_path('our-story');
 	define('STORY_PAGE_ID', $current_page->ID);
 }
+if (!defined('STORY_TEMPL_NAME')) {
+	define('STORY_TEMPL_NAME', 'story-template.php');
+}
 
 function story_first_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-1', 'First screen');
 
@@ -37,7 +40,7 @@ add_filter('smart-cf-register-fields', 'story_first_section_fields', 1, 5);
 
 function story_story_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-2', 'Our story');
 
@@ -72,7 +75,7 @@ add_filter('smart-cf-register-fields', 'story_story_section_fields', 2, 5);
 
 function story_mission_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-3', 'Our mission');
 
@@ -107,7 +110,7 @@ add_filter('smart-cf-register-fields', 'story_mission_section_fields', 3, 5);
 
 function story_triumph_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-4', 'Taste the Triumph');
 
@@ -137,7 +140,7 @@ add_filter('smart-cf-register-fields', 'story_triumph_section_fields', 4, 5);
 
 function story_location_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-5', 'Prime Locations');
 
@@ -183,7 +186,7 @@ add_filter('smart-cf-register-fields', 'story_location_section_fields', 5, 5);
 
 function story_guaranteed_section_fields($settings, $type, $id, $meta_type, $types)
 {
-	if (STORY_PAGE_ID == $id && $type === 'page') {
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
 
 		$Section = SCF::add_setting('story-6', 'Satisfaction Guaranteed');
 
@@ -225,3 +228,77 @@ function story_guaranteed_section_fields($settings, $type, $id, $meta_type, $typ
 	return $settings;
 }
 add_filter('smart-cf-register-fields', 'story_guaranteed_section_fields', 6, 5);
+
+function story_reviews_section_fields($settings, $type, $id, $meta_type, $types)
+{
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
+
+		$Section = SCF::add_setting('story-7', 'Reviews');
+
+		$Section->add_group(
+			'reviews-section',
+			false,
+			array(
+				array(
+					'type'        => 'relation',
+					'name'        => 'review_ids',
+					'label'       => 'Reviews',
+					'post-type'   => array('reviews'),
+					'limit'       => 0,
+				),
+			)
+		);
+
+		$settings[] = $Section;
+	}
+
+	return $settings;
+}
+add_filter('smart-cf-register-fields', 'story_reviews_section_fields', 7, 5);
+
+function story_product_section_fields($settings, $type, $id, $meta_type, $types)
+{
+	if (STORY_PAGE_ID == $id || get_page_template_slug($id) == STORY_TEMPL_NAME) {
+
+		$Section = SCF::add_setting('story-8', 'Product section');
+
+		$Section->add_group(
+			'product-section',
+			false,
+			array(
+				array(
+					'name'        => 'product__title',
+					'label'       => 'Section title',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'product__text',
+					'label'       => 'Section text',
+					'type'        => 'wysiwyg',
+				),
+				array(
+					'type'        => 'relation',
+					'name'        => 'product__cat',
+					'label'       => 'Category',
+					'post-type'    => array('products'),
+					'limit'       => 0,
+				),
+				array(
+					'name'        => 'product__btn',
+					'label'       => 'Section button text',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'product__btn_link',
+					'label'       => 'Section button link',
+					'type'        => 'text',
+				),
+			)
+		);
+
+		$settings[] = $Section;
+	}
+
+	return $settings;
+}
+add_filter('smart-cf-register-fields', 'story_product_section_fields', 8, 5);

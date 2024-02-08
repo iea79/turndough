@@ -1,9 +1,3 @@
-/*!
-    Theme Name: Turn Dough
-    Author: Evgeniy Ivanov
-    Author URI: http://frontendie.ru
-    Version:      1.0.0
-  */
 @import 'mixins/mixins';
 
 @include reset(); // Сброс стилей
@@ -23,24 +17,28 @@ $break_md: 1050px;
 $break_sm: 768px;
 $break_xs: 500px;
 
-img {
-    height: auto;
-}
-
 // Шрифты
-@include font-face('Kelpo', 'fonts/kelpo_DEMO/Kelpo', normal, normal, $exts: woff2 woff ttf svg);
+@include font-face('Kelpo', 'fonts/kelpo_DEMO/Kelpo', normal, normal, $exts: woff2 woff ttf);
 @include font-face('Roboto', 'fonts/roboto/roboto-v30-latin-regular', normal, normal, $exts: woff2 woff ttf);
 @include font-face('Roboto', 'fonts/roboto/roboto-v30-latin-500', 500, normal, $exts: woff2 woff ttf);
 
 // Цвета
-// $primary_color: #b90069;
 $primary_color: #ec0187;
-// $secondary_color: #2d8997;
-// $secondary_color: #3ebacc;
 $secondary_color: #99dde3;
-$text_color: #82616f;
+$text_color: #ae909d;
 
+// Подключение файлов
 @import 'blocks/settings';
+
+a:not([class]) {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration-color: transparent;
+    }
+}
+
 // @import 'hamburgers/hamburgers';
 // @import 'blocks/template';
 // @import 'blocks/popup';
@@ -56,44 +54,76 @@ $text_color: #82616f;
 @import 'blocks/welcome-slider';
 @import 'blocks/benefit';
 @import 'blocks/products-slider';
+@import 'blocks/product-card';
 @import 'blocks/besides';
+@import 'blocks/home-blog';
 @import 'blocks/more-offer';
 @import 'blocks/instagram';
 @import 'blocks/contact';
+@import 'blocks/review';
 @import 'blocks/welcome';
+@import 'blocks/welcome-slider';
 @import 'blocks/story';
-@import 'blocks/catalog';
-@import 'blocks/product-card';
 @import 'blocks/description';
 @import 'blocks/presentation';
-@import 'blocks/review';
+@import 'blocks/productReview';
 
+@import 'blocks/catalog';
 @import 'blocks/footer';
 // @import 'blocks/menu';
 
-.product-card__img {
-    padding-top: 1em;
+.breadcrumb {
+    margin-bottom: 1.25em;
+    color: #f29acc;
 
-    img {
-        display: block;
-        object-fit: contain;
-        object-position: bottom;
-        width: 100%;
-        height: 100%;
+    a {
+        color: inherit;
+    }
+    span {
+        color: #fff1f7;
+    }
+    a,
+    span {
+        font-family: Roboto;
+        font-size: 1.125em;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.6;
     }
 }
 
-.js-parallaxMouse {
-    @media (min-width: 768px) {
-        body:not(.macos) & {
-            transition: transform 0.5s;
+.section {
+    padding: 3em 0;
+    &__title {
+        font-family: 'Kelpo';
+        font-size: 3.25em;
+        line-height: 0.86;
+        font-weight: 400;
+        color: #ec0187;
+        text-shadow: -0.1em 0.1em #fff;
+        margin-bottom: 0.2em;
+
+        @media (min-width: 768px) {
+            font-size: 5.25em;
+        }
+
+        .dark & {
+            color: #fff;
+            text-shadow: -0.1em 0.1em #ec0187;
         }
     }
-}
+    &__sub {
+        font-family: 'Roboto';
+        font-size: 1em;
+        font-weight: 400;
+        line-height: 1.5;
 
-.container_center {
-    width: 100%;
-    max-width: 91em;
-    margin: auto;
-    padding: 0 20px;
+        a {
+            color: inherit;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 1.125em;
+        }
+    }
 }

@@ -10,7 +10,7 @@
 
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define('_S_VERSION', '1.0.0');
+	define('_S_VERSION', '1.0.6');
 }
 
 if (!function_exists('frondendie_setup')) :
@@ -165,6 +165,12 @@ function frondendie_scripts()
 	if (is_singular('products')) {
 		wp_enqueue_style('product-style', get_template_directory_uri() . '/css/product.css', array(), _S_VERSION);
 	}
+	if (is_singular('post')) {
+		wp_enqueue_style('post-style', get_template_directory_uri() . '/css/post.css', array(), _S_VERSION);
+	}
+	if (is_page('blog')) {
+		wp_enqueue_style('blog-style', get_template_directory_uri() . '/css/blog.css', array(), _S_VERSION);
+	}
 	if (is_front_page()) {
 		wp_enqueue_script('gmap-js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVY9bdJtxFyjxthJGdsXG7G7A6jXPRFJg&&callback=initMap', array('site-js'), _S_VERSION, true);
 	}
@@ -178,23 +184,6 @@ function admin_scripts()
 	}
 }
 add_action('admin_enqueue_scripts', 'admin_scripts');
-
-/**
- * SCF Home
- */
-require get_template_directory() . '/scf/home.php';
-
-/**
- * Contacts page from admin
- */
-add_action('init', function () {
-	SCF::add_options_page('Contacts', 'Our Contacts', 'manage_options', 'our-contacts', 'dashicons-location-alt', 25);
-});
-
-/**
- * SCF Contact.
- */
-require get_template_directory() . '/scf/contacts.php';
 
 add_action('init', 'create_projects_taxonomies');
 
@@ -267,21 +256,6 @@ function cases_register_post_type_init()
 	register_post_type('products', $args);
 }
 
-/**
- * SCF Product.
- */
-require get_template_directory() . '/scf/products.php';
-/**
- * SCF product category.
- */
-require get_template_directory() . '/scf/product-category.php';
-
-if (!defined('MENU_PAGE_ID')) {
-	$current_page = get_page_by_path('menu');
-	// var_dump($current_page->ID);
-	define('MENU_PAGE_ID', $current_page->ID);
-}
-
 add_action('init', 'reviews_register_post_type_init'); // Использовать функцию только внутри хука init
 
 function reviews_register_post_type_init()
@@ -320,8 +294,110 @@ function reviews_register_post_type_init()
 }
 
 /**
+ * SCF Home
+ */
+require get_template_directory() . '/scf/home.php';
+
+/**
+ * Custom blocks
+ */
+// require get_template_directory() . '/blocks/single-post/single-post.php';
+function single_post_single_post_block_init()
+{
+	register_block_type(get_template_directory() . '/blocks/turndouth-block/build');
+}
+add_action('init', 'single_post_single_post_block_init');
+
+/**
+ * Contacts page from admin
+ */
+add_action('init', function () {
+	SCF::add_options_page('Contacts', 'Our Contacts', 'manage_options', 'our-contacts', 'dashicons-location-alt', 25);
+});
+
+/**
+ * SCF Contact.
+ */
+require get_template_directory() . '/scf/contacts.php';
+
+/**
+ * Backgrounds page from admin
+ */
+add_action('init', function () {
+	SCF::add_options_page('Backgrounds', 'Backgrounds', 'manage_options', 'our-backgrounds', 'dashicons-images-alt2', 26);
+});
+
+/**
+ * SCF backgrounds.
+ */
+require get_template_directory() . '/scf/backgrounds.php';
+
+/**
+ * SCF Tags.
+ */
+require get_template_directory() . '/scf/tags.php';
+
+/**
+ * SCF Product.
+ */
+require get_template_directory() . '/scf/products.php';
+/**
+ * SCF product category.
+ */
+require get_template_directory() . '/scf/product-category.php';
+
+/**
  * SCF Reviews.
  */
 require get_template_directory() . '/scf/reviews.php';
+
+/**
+ * SCF story.
+ */
 require get_template_directory() . '/scf/story.php';
+
+/**
+ * SCF menu.
+ */
 require get_template_directory() . '/scf/menu.php';
+
+/**
+ * SCF blog page.
+ */
+require get_template_directory() . '/scf/blog.php';
+
+
+if (!function_exists('deesse_read_time')) :
+	function deesse_read_time()
+	{
+		$text = get_the_content();
+		$words = str_word_count(strip_tags($text), 0, 'abcdefghiklmnopqrstvxyzABCDEFGHIKLMNOPQRSTVXYZ');
+		if (!empty($words)) {
+			$time_in_minutes = ceil($words / 200);
+			return $time_in_minutes . ' min';
+		}
+		return false;
+	}
+endif;
+
+add_action('wp_ajax_nopriv_frontendie_add_like', 'frontendie_add_like');
+add_action('wp_ajax_frontendie_add_like', 'frontendie_add_like');
+
+function frontendie_add_like()
+{
+	$postID = $_POST['postID'];
+	$likeCount = $_POST['likeCount'];
+	add_post_meta($postID, 'like_list_count', $likeCount);
+}
+
+
+/**
+ * Proper ob_end_flush() for all levels
+ *
+ * This replaces the WordPress `wp_ob_end_flush_all()` function
+ * with a replacement that doesn't cause PHP notices.
+ */
+remove_action('shutdown', 'wp_ob_end_flush_all', 1);
+add_action('shutdown', function () {
+	while (@ob_end_flush());
+});

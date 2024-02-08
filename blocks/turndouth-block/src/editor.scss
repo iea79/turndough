@@ -1,0 +1,14 @@
+@import './singlePost';
+
+.wp-block-create-block-turndouth-block {
+    // border: 1px dotted #f00;
+    .singlePost {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.wp-block-fullwidth {
+    max-width: none;
+    margin: 0;
+}

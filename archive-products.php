@@ -9,13 +9,24 @@
  */
 
 get_header();
+
+// if (!defined('MENU_PAGE_ID')) {
+// 	$current_page = get_page_by_path('menu');
+// 	// var_dump($current_page->ID);
+// 	define('MENU_PAGE_ID', $current_page->ID);
+// } 
+
 $ids = SCF::get('menu_cat', 239);
-$meta = SCF::gets(MENU_PAGE_ID);
+// $meta = SCF::gets(MENU_PAGE_ID);
+
+$ids = [];
 $cats = get_terms('product-category', [
 	'hide_empty' => true,
 	'include'	 => $ids,
-	'orderby' 	 => 'include',
+	'orderby' 	 => 'count',
+	'order' => 'ASK',
 ]);
+
 
 // var_dump($cats);
 
@@ -28,11 +39,12 @@ $cats = get_terms('product-category', [
 		$cat_color = $cat_meta['cat_color'][0];
 		$cat_img = $cat_meta['cat_img'][0];
 		$cat_bg = $cat_meta['cat_bg'][0];
+		$cat_contrast = $cat_meta['cat_page_contrast'][0] ?? '';
 		// var_dump($cat);
 	?>
 		<!-- catalog-->
 		<section class="catalog" id="<?php echo $cat->slug ?>">
-			<div class="catalog__head">
+			<div class="catalog__head <?php echo $cat_contrast ?>">
 				<?php
 				switch ($key) {
 					case '1':
@@ -62,7 +74,7 @@ $cats = get_terms('product-category', [
 				<div class="catalog__bg"> <?php echo wp_get_attachment_image($cat_bg, 'full', null, array('role' => 'img')) ?></div>
 				<div class="wrapper">
 					<div class="catalog__content">
-						<div class="catalog__title"><?php echo $cat->name ?></div>
+						<h2 class="catalog__title"><?php echo $cat->name ?></h2>
 						<p><?php echo $cat->description ?></p>
 					</div>
 					<div class="catalog__img"> <?php echo wp_get_attachment_image($cat_img, 'full', null, array('role' => 'img')) ?></div>
@@ -93,7 +105,13 @@ $cats = get_terms('product-category', [
 						$products = new WP_Query([
 							'posts_per_page' => -1,
 							'post_type' => 'products',
-							'product-category' => $cat->name,
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'product-category',
+									'field'    => 'id',
+									'terms'    => $cat->term_id
+								)
+							),
 						]);
 						if ($products->have_posts()) {
 							while ($products->have_posts()) {
@@ -106,9 +124,9 @@ $cats = get_terms('product-category', [
 								<div class="catalog__col" id="<?php echo $cat->slug . '-' . get_the_id() ?>">
 									<!-- product-card-->
 									<div class="product-card">
-										<div class="product-card__img" style="background-color: <?php echo $cat_color; ?>;"> <?php echo wp_get_attachment_image($product_img, 'full', null, array('role' => 'img')) ?></div>
+										<a href="<?php echo get_the_permalink() ?>" class="product-card__img" style="background-color: <?php echo $cat_color; ?>;"> <?php echo wp_get_attachment_image($product_img, 'full', null, array('role' => 'img')) ?></a>
 										<div class="product-card__content">
-											<h2 role="heading" aria-level="2" style="color: <?php echo $cat_color; ?>;"><?php the_title() ?></h2>
+											<h3 role="heading" aria-level="2" style="color: <?php echo $cat_color; ?>;"><a href="<?php echo get_the_permalink() ?>"><?php the_title() ?></a></h3>
 											<?php echo $product_text; ?>
 										</div>
 									</div>

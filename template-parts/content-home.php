@@ -210,68 +210,7 @@
 	<div class="benefit__fly"> <img class="js-parallaxMouse" src="<?php echo get_template_directory_uri() . '/img/flying/img-1.png' ?>" alt="" data-revers="true"></div>
 </div>
 <!-- /benefit-->
-<!-- products-slider-->
-<?php
-$product_ids = SCF::get('product__cat');
-$products = new WP_Query([
-	'post_type' => 'products',
-	'post__in'  => $product_ids,
-	'orderby'   => 'post__in',
-]);
-
-?>
-<div class="products-slider">
-	<div class="products-slider__fly-1"><img class="js-parallaxMouse" src="<?php echo get_template_directory_uri() . '/img/flying/img-2.png' ?>" alt="" data-revers="true"></div>
-	<div class="products-slider__fly-2"><img class="js-parallaxMouse" src="<?php echo get_template_directory_uri() . '/img/flying/img-3.png' ?>" alt=""></div>
-	<div class="products-slider__block">
-		<div class="wrapper">
-			<div class="title"><?php echo SCF::get('product__title'); ?></div>
-			<div class="products-slider__sub"><?php echo SCF::get('product__text'); ?></div>
-			<div class="products-slider__slider">
-				<div id="sliderProduct">
-					<div class="swiper-wrapper">
-						<?php
-						if ($products->have_posts()) {
-							while ($products->have_posts()) {
-								$products->the_post();
-								$pMeta = get_post_meta(get_the_ID());
-								$pTax = get_the_terms(get_the_ID(), 'product-category')[0];
-								// var_dump($pTax);
-						?>
-								<div class="swiper-slide">
-									<div class="products-slider__card">
-										<div class="products-slider__img">
-											<?php echo wp_get_attachment_image($pMeta['product__photo'][0], 'full') ?>
-										</div>
-										<div class="products-slider__title"><?php the_title() ?></div>
-										<div class="products-slider__text"><?php echo $pMeta['product__text'][0] ?></div>
-										<div class="products-slider__btn"> <a title="More link" href="/menu/#<?php echo $pTax->slug . '-' . get_the_id() ?>">more</a></div>
-									</div>
-								</div>
-						<?php
-							}
-						}
-						wp_reset_postdata();
-						?>
-					</div>
-				</div>
-				<div class="products-slider__arrows">
-					<div class="swiper-button-prev products-slider__button--prev">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 31" fill="none">
-							<path d="M36.5508 14.6579L1.99988 14.6578M1.99988 14.6578C6.27712 14.6578 14.8316 17.7727 14.8316 30.2319M1.99988 14.6578C6.27712 14.3525 14.8316 10.9934 14.8316 -0.00010806" stroke="#91D7E1" stroke-width="2.66753" stroke-linejoin="round" />
-						</svg>
-					</div>
-					<div class="swiper-button-next products-slider__button--next">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 31" fill="none">
-							<path d="M-1.36153e-06 14.6579L34.5509 14.6578M34.5509 14.6578C30.2737 14.6578 21.7192 17.7727 21.7192 30.2319M34.5509 14.6578C30.2737 14.3525 21.7192 10.9934 21.7192 -0.00010806" stroke="#91D7E1" stroke-width="2.66753" stroke-linejoin="round" />
-						</svg>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- /products-slider-->
+<?php require get_template_directory() . '/inc/products-slider.php'; ?>
 <!-- besides-->
 <div class="besides">
 	<div class="besides__fly-1"><img class="js-parallaxMouse" src="<?php echo get_template_directory_uri() . '/img/flying/img-4.png' ?>" alt="" data-revers="true"></div>
@@ -302,12 +241,75 @@ $products = new WP_Query([
 	<div class="wrapper">
 		<div class="more-offer__content">
 			<div class="subtitle subtitle--blue"><?php echo SCF::get('offer__title'); ?></div>
-			<div class="more-offer__text"><?php echo SCF::get('offer__title'); ?></div>
+			<div class="more-offer__text"><?php echo SCF::get('offer__text'); ?></div>
 		</div>
 		<div class="more-offer__img"><?php echo wp_get_attachment_image(SCF::get('offer__img'), 'full') ?></div>
 	</div>
 </div>
 <!-- /more-offer-->
+<!-- instagram-->
+<div class="homeBlog" id="homeBlog">
+	<div class="homeBlog__container">
+		<div class="wrapper">
+			<div class="homeBlog__head">
+				<div class="subtitle subtitle--pink"><?php echo SCF::get('blog__title'); ?></div>
+				<a href="<?php echo SCF::get('blog__link'); ?>" class="homeBlog__link mobile-hide"><?php echo SCF::get('blog__link_text'); ?></a>
+			</div>
+			<div class="homeBlog__list">
+				<?php
+				global $post;
+				$ids = SCF::get('blog__ids');
+				//var_dump($ids);
+				$query = new WP_Query([
+					'post_type' 	 => 'post',
+					'posts_per_page' => 3,
+					'post__in'        => $ids,
+					'orderby'        => 'post__in',
+				]);
+
+				if ($query->have_posts()) {
+					while ($query->have_posts()) {
+						$query->the_post();
+
+				?>
+						<div class="homeBlog__item">
+							<div class="homeBlog__img">
+								<?php the_post_thumbnail('full') ?>
+								<div class="homeBlog__tags">
+									<?php
+									$tags = wp_get_post_tags(get_the_ID());
+									foreach ($tags as $tag) {
+										$tag_meta = get_term_meta($tag->term_id);
+										$tag_bg = '#EC0187';
+										if ($tag_meta && $tag_meta['tag_color']) {
+											$tag_bg = $tag_meta['tag_color'][0];
+										}
+
+									?><div class="homeBlog__tag" style="background-color: <?php echo $tag_bg ?>;"><?php echo $tag->name ?></div><?php
+																																			}
+																																				?>
+
+								</div>
+							</div>
+							<div class="homeBlog__title"><?php the_title() ?></div>
+							<div class="homeBlog__text"><?php the_excerpt() ?></div>
+							<a href="<?php the_permalink() ?>" class="homeBlog__more">Read more</a>
+						</div>
+				<?php
+					}
+				}
+
+				wp_reset_postdata(); // Сбрасываем $post
+				?>
+			</div>
+			<div class="homeBlog__foot">
+				<a href="<?php echo SCF::get('blog__link'); ?>" class="homeBlog__link mobile-visible"><?php echo SCF::get('blog__link_text'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /instagram-->
+<?php include get_template_directory() . '/inc/review.php'; ?>
 <!-- instagram-->
 <div class="instagram" id="instagram">
 	<div class="instagram__fly"> <img class="js-parallaxMouse" src="<?php echo get_template_directory_uri() . '/img/flying/img-8.png' ?>" alt=""></div>
@@ -353,8 +355,8 @@ $products = new WP_Query([
 				</div>
 				<div class="contact__text">
 					<h3>Contact information</h3>
-					<p>Promotional: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?><br>
-						General: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?> <br>Phone Number: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?></p>
+					<p>Promotional: <a href="mailto:<?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email'); ?></a><br>
+						General: <a href="mailto: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general'); ?></a> <br>Phone Number: <a href="tel: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__tel'); ?></a></p>
 				</div>
 				<div class="contact__text">
 					<h3>Hours</h3>
@@ -368,7 +370,7 @@ $products = new WP_Query([
 				</div>
 				<div class="contact__text">
 					<h3>Contact information</h3>
-					<p>Promotional: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email2'); ?><br> General: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general2'); ?><br> Phone Number: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel2'); ?></p>
+					<p>Promotional: <a href="mailto: <?php echo SCF::get_option_meta('our-contacts', 'contacts__email2'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email2'); ?></a><br> General: <a href="mailto:<?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general2'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__email_general2'); ?></a><br> Phone Number: <a href="tel: <?php echo SCF::get_option_meta('our-contacts', 'contacts__tel2'); ?>"><?php echo SCF::get_option_meta('our-contacts', 'contacts__tel2'); ?></a></p>
 				</div>
 				<div class="contact__text">
 					<h3>Hours</h3>

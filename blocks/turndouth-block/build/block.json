@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/turndouth-block",
+  "version": "0.1.0",
+  "title": "Single post",
+  "category": "theme",
+  "icon": "wordpress",
+  "description": "",
+  "attributes": {
+    "postId": {
+      "type": "number",
+      "default": null
+    },
+    "post": {
+      "type": "object",
+      "default": null
+    },
+    "cover": {
+      "type": "object",
+      "default": null
+    },
+    "customCover": {
+      "type": "object",
+      "default": null
+    },
+    "inverse": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "turndouth-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

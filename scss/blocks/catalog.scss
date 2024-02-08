@@ -1,248 +1,316 @@
 /* catalog */
-.catalog { 
-  padding-bottom: 10em;
-  &__head {
-    position: relative;
-    .wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      min-height: 37em;
-      position: relative;
-      z-index: 2;
+.catalog {
+    padding-bottom: 10em;
+    &__head {
+        position: relative;
+        .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            min-height: 37em;
+            position: relative;
+            z-index: 2;
+        }
+        @media (min-width: 768px) {
+            margin-top: 9.5em;
+        }
     }
-  }
-  &__bg {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  &__content {
-    width: 35em;
-    padding: 8em 0;
-    p {
-      font-size: 1.125em;
-      line-height: 160%;
-    }
-  }
-  &__title {
-    font-family: "Kelpo";
-    font-size: 4.875em;
-    line-height: 86%;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.2em;
-    color: $primary_color;
-  }
-  &__img {
-    align-self: flex-end;
-    flex-shrink: 0;
-    margin-right: -7em;
-    img {
-      display: block;
-      width: 49em;
-    } 
-  }
-  &__cards {
-    padding-top: 9.8em;
-    position: relative;
-    .row {
-      margin-left: -3.6em;
-      margin-top: -3.6em;
-      > * {
-        padding-left: 3.6em;
-        padding-top: 3.6em;
-      }
-    }
-  }
-  &__col {
-    @include col(4);
-    @include col-sm(12);
-  }
-  &__fly-1 {
-    position: absolute;
-    top: -3em;
-    left: 14em;
-    z-index: 1;
-    img {
-      width: 8em;
-    }
-  }
-  &__fly-2 {
-    position: absolute;
-    top: -2em;
-    left: 60em;
-    z-index: 1;
-    img {
-      width: 3em;
-    }
-  }
-  &__fly-3 {
-    position: absolute;
-    top: -3em;
-    right: 11em;
-    z-index: 1;
-    img {
-      width: 5em;
-    }
-  }
-  &__fly-4 {
-    position: absolute;
-    top: -3em;
-    left: 38em;
-    z-index: 1;
-    img {
-      width: 5.5em;
-    }
-  }
-  &__fly-5 {
-    position: absolute;
-    top: -3.5em;
-    left: 33em;
-    z-index: 1;
-    img {
-      width: 12em;
-    }
-  }
-  &__fly-6 {
-    position: absolute;
-    top: -5em;
-    left: 22em;
-    z-index: 1;
-    img {
-      width: 8em;
-    }
-  }
-  &__fly-7 {
-    position: absolute;
-    top: -1em;
-    right: 46em;
-    z-index: 1;
-    img {
-      width: 3em;
-    }
-  }
-  &__fly-8 {
-    position: absolute;
-    top: -4em;
-    left: 47em;
-    z-index: 1;
-    img {
-      width: 12em;
-    }
-  }
-  &__fly-9 {
-    position: absolute;
-    top: -5em;
-    right: 4em;
-    z-index: 1;
-    img {
-      width: 14em;
-    }
-  }
-  &__head-fly {
-    position: absolute;
-    top: 2em;
-    left: 3em;
-    z-index: 1;
-    img {
-      width: 113em;
-    }
-  }
-  @media (max-width: $break_sm) {
-    padding-bottom: 6em;
-    &__title {
-      font-size: 3.5em;
-    }
-    &__img {
-      width: 100%;
-      margin-right: 0;
+    &__bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
     &__content {
-      width: 100%;
-      padding: 6em 0 2em;
+        width: 35em;
+        padding: 8em 0;
+        p {
+            font-size: 1.125em;
+            line-height: 160%;
+
+            .dark & {
+                color: #fff1f7;
+            }
+        }
     }
-    &__head {
-      .wrapper {
-        min-height: 0;
-      }
+    &__title {
+        font-family: 'Kelpo';
+        font-size: 4.875em;
+        line-height: 86%;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.2em;
+        color: $primary_color;
+        font-weight: 400;
+
+        .dark & {
+            color: #fff1f7;
+            text-shadow: -0.05em 0.05em 0 #5c2d95;
+        }
+    }
+    &__img {
+        align-self: flex-end;
+        flex-shrink: 0;
+        margin-right: -7em;
+        @media (min-width: 768px) {
+            width: 49em;
+        }
+        img {
+            display: block;
+            @media (min-width: 768px) {
+                max-height: 90%;
+            }
+        }
     }
     &__cards {
-      padding-top: 4em;
+        padding-top: 9.8em;
+        position: relative;
+        .row {
+            margin-left: -3.6em;
+            margin-top: -3.6em;
+            > * {
+                padding-left: 3.6em;
+                padding-top: 3.6em;
+            }
+        }
+    }
+    &__col {
+        @include col(4);
+        @include col-sm(12);
     }
     &__fly-1 {
-      left: 1em;
-      top: -2em;
-      img {
-        width: 6em;
-      }
+        position: absolute;
+        top: -3em;
+        left: 14em;
+        z-index: 1;
+        img {
+            width: 8em;
+        }
     }
     &__fly-2 {
-      display: none;
+        position: absolute;
+        top: -2em;
+        left: 60em;
+        z-index: 1;
+        img {
+            width: 3em;
+        }
     }
     &__fly-3 {
-      right: 1em;
-      top: -2em;
-      img {
-        width: 3em;
-      }
+        position: absolute;
+        top: -3em;
+        right: 11em;
+        z-index: 1;
+        img {
+            width: 5em;
+        }
     }
     &__fly-4 {
-      left: 4em;
-      top: -2em;
-      img {
-        width: 5em;
-      }
+        position: absolute;
+        top: -3em;
+        left: 38em;
+        z-index: 1;
+        img {
+            width: 5.5em;
+        }
     }
     &__fly-5 {
-      left: 4em;
-      top: -3em;
-      img {
-        width: 9em;
-      }
+        position: absolute;
+        top: -3.5em;
+        left: 33em;
+        z-index: 1;
+        img {
+            width: 12em;
+        }
     }
     &__fly-6 {
-      left: 3em;
-      top: -3em;
-      img {
-        width: 6em;
-      }
+        position: absolute;
+        top: -5em;
+        left: 22em;
+        z-index: 1;
+        img {
+            width: 8em;
+        }
     }
     &__fly-7 {
-      right: 4em;
-      top: 2em;
-      img {
-        width: 3em;
-      }
+        position: absolute;
+        top: -1em;
+        right: 46em;
+        z-index: 1;
+        img {
+            width: 3em;
+        }
     }
     &__fly-8 {
-      left: 8em;
-      top: -2em;
-      img {
-        width: 7em;
-      }
+        position: absolute;
+        top: -4em;
+        left: 47em;
+        z-index: 1;
+        img {
+            width: 12em;
+        }
     }
     &__fly-9 {
-      display: none;
-    }
-    .row {
-      margin-left: -2.6em;
-      margin-top: -2.6em;
-      > * {
-        padding-left: 2.6em;
-        padding-top: 2.6em;
-      }
+        position: absolute;
+        top: -5em;
+        right: 4em;
+        z-index: 1;
+        img {
+            width: 14em;
+        }
     }
     &__head-fly {
-      display: none;
+        position: absolute;
+        top: 2em;
+        left: 3em;
+        z-index: 1;
+        img {
+            width: 113em;
+        }
     }
-  }
+    @media (max-width: $break_sm) {
+        padding-bottom: 6em;
+        &__title {
+            font-size: 3.5em;
+        }
+        &__img {
+            width: 100%;
+            margin-right: 0;
+        }
+        &__content {
+            width: 100%;
+            padding: 6em 0 2em;
+        }
+        &__head {
+            .wrapper {
+                min-height: 0;
+            }
+        }
+        &__cards {
+            padding-top: 4em;
+        }
+        &__fly-1 {
+            left: 1em;
+            top: -2em;
+            img {
+                width: 6em;
+            }
+        }
+        &__fly-2 {
+            display: none;
+        }
+        &__fly-3 {
+            right: 1em;
+            top: -2em;
+            img {
+                width: 3em;
+            }
+        }
+        &__fly-4 {
+            left: 4em;
+            top: -2em;
+            img {
+                width: 5em;
+            }
+        }
+        &__fly-5 {
+            left: 4em;
+            top: -3em;
+            img {
+                width: 9em;
+            }
+        }
+        &__fly-6 {
+            left: 3em;
+            top: -3em;
+            img {
+                width: 6em;
+            }
+        }
+        &__fly-7 {
+            right: 4em;
+            top: 2em;
+            img {
+                width: 3em;
+            }
+        }
+        &__fly-8 {
+            left: 8em;
+            top: -2em;
+            img {
+                width: 7em;
+            }
+        }
+        &__fly-9 {
+            display: none;
+        }
+        .row {
+            margin-left: -2.6em;
+            margin-top: -2.6em;
+            > * {
+                padding-left: 2.6em;
+                padding-top: 2.6em;
+            }
+        }
+        &__head-fly {
+            display: none;
+        }
+    }
+
+    &__foot {
+        margin: 4em 0 0;
+        border-top: 1px solid #fabfe2;
+        padding-top: 2em;
+        @media (min-width: 768px) {
+            padding-top: 3.75em;
+            margin: 10em 0 0;
+        }
+        &_title {
+            color: #ec0187;
+            font-family: Kelpo;
+            font-size: 3em;
+            font-weight: 400;
+            line-height: 80%; /* 62.4px */
+            letter-spacing: -0.01em;
+
+            @media (min-width: 768px) {
+                font-size: 4.875em;
+            }
+        }
+        &_text {
+            margin: 1.625em 0;
+            font-size: 1em;
+            line-height: 1.6;
+            text-align: justify;
+
+            @media (min-width: 768px) {
+                columns: 2 1.25em;
+            }
+        }
+    }
+
+    .catalogSingle__fly {
+        position: absolute;
+        z-index: 2;
+        top: -5.5em;
+        right: 6em;
+        left: 2.875em;
+
+        img {
+            display: block;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
 }
-/* /catalog */

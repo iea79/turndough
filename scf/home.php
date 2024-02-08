@@ -145,6 +145,16 @@ function home_product_section_fields($settings, $type, $id, $meta_type, $types)
 					'post-type'    => array('products'),
 					'limit'       => 0,
 				),
+				array(
+					'name'        => 'product__btn',
+					'label'       => 'Section button text',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'product__btn_link',
+					'label'       => 'Section button link',
+					'type'        => 'text',
+				),
 			)
 		);
 
@@ -290,3 +300,72 @@ function home_instagram_section_fields($settings, $type, $id, $meta_type, $types
 	return $settings;
 }
 add_filter('smart-cf-register-fields', 'home_instagram_section_fields', 6, 5);
+
+function home_blog_section_fields($settings, $type, $id, $meta_type, $types)
+{
+	if (HOME_ID == $id && $type === 'page') {
+
+		$Section = SCF::add_setting('home-7', 'Blog section');
+
+		$Section->add_group(
+			'blog-section',
+			false,
+			array(
+				array(
+					'name'        => 'blog__title',
+					'label'       => 'Section title',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'blog__link',
+					'label'       => 'Blog link',
+					'type'        => 'text',
+				),
+				array(
+					'name'        => 'blog__link_text',
+					'label'       => 'Blog link text',
+					'type'        => 'text',
+				),
+				array(
+					'type'        => 'relation',
+					'name'        => 'blog__ids',
+					'label'       => 'Posts',
+					'post-type'   => array('post'),
+					'limit'       => 3,
+				),
+			)
+		);
+
+		$settings[] = $Section;
+	}
+
+	return $settings;
+}
+add_filter('smart-cf-register-fields', 'home_blog_section_fields', 7, 5);
+
+function home_reviews_section_fields($settings, $type, $id, $meta_type, $types)
+{
+	if (HOME_ID == $id && $type === 'page') {
+
+		$Section = SCF::add_setting('home-8', 'Reviews');
+
+		$Section->add_group(
+			'reviews-section',
+			false,
+			array(
+				array(
+					'type'        => 'relation',
+					'name'        => 'review_ids',
+					'label'       => 'Reviews',
+					'post-type'   => array('reviews'),
+					'limit'       => 0,
+				),
+			)
+		);
+
+		$settings[] = $Section;
+	}
+
+	return $settings;
+}
+add_filter('smart-cf-register-fields', 'home_reviews_section_fields', 8, 5);

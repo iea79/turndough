@@ -14,6 +14,12 @@ function contacts_part_fields($settings, $type, $id, $meta_type, $types)
 			false,
 			array(
 				array(
+					'name'        => 'backgrounds',
+					'label'       => 'Section poduct background',
+					'type'        => 'image',
+					'size'        => 'medium',
+				),
+				array(
 					'name'        => 'contacts__addres',
 					'label'       => 'Hollivood address',
 					'type'        => 'wysiwyg',

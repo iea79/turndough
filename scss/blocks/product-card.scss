@@ -29,7 +29,8 @@
             letter-spacing: -0.02em;
             margin-bottom: 0.17em;
             a {
-                color: $primary_color;
+                // color: $primary_color;
+                text-decoration: none;
             }
         }
         p {
@@ -46,6 +47,15 @@
                 a {
                     color: #83cdd8;
                 }
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration-color: transparent;
             }
         }
     }

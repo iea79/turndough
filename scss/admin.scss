@@ -1,18 +1,22 @@
 #toplevel_page_edit-post_type-smart-custom-fields {
-	display: none;
+    display: none;
 }
 
+@import 'mixins/mixins';
+
+@include font-face('Kelpo', '../fonts/kelpo_DEMO/Kelpo', normal, normal, $exts: woff2 woff ttf svg);
+
 .taxonomy-product-category {
-	.smart-cf-meta-box {
-		.smart-cf-meta-box-table {
-			border-bottom-color: transparent;
-		}
-		tbody {
-			th {
-				&:first-child {
-					// display: none;
-				}
-			}
-		}
-	}
+    .smart-cf-meta-box {
+        .smart-cf-meta-box-table {
+            border-bottom-color: transparent;
+        }
+        tbody {
+            th {
+                &:first-child {
+                    // display: none;
+                }
+            }
+        }
+    }
 }
