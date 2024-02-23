@@ -270,11 +270,13 @@ function story_product_section_fields($settings, $type, $id, $meta_type, $types)
 					'name'        => 'product__title',
 					'label'       => 'Section title',
 					'type'        => 'text',
+					'default'     => 'Signature Chimney Cakes',
 				),
 				array(
 					'name'        => 'product__text',
 					'label'       => 'Section text',
 					'type'        => 'wysiwyg',
+					'default'     => 'Today, we proudly offer 18 signature Chimney cakes with Soft Serve Gelato, allowing you to indulge in a variety of delectable combinations.',
 				),
 				array(
 					'type'        => 'relation',
@@ -287,11 +289,13 @@ function story_product_section_fields($settings, $type, $id, $meta_type, $types)
 					'name'        => 'product__btn',
 					'label'       => 'Section button text',
 					'type'        => 'text',
+					'default'     => 'See Our Menu',
 				),
 				array(
 					'name'        => 'product__btn_link',
 					'label'       => 'Section button link',
 					'type'        => 'text',
+					'default'     => '/menu/',
 				),
 			)
 		);

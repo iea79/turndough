@@ -10,7 +10,7 @@
 
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define('_S_VERSION', '1.0.6');
+	define('_S_VERSION', '1.0.7');
 }
 
 if (!function_exists('frondendie_setup')) :
@@ -171,7 +171,7 @@ function frondendie_scripts()
 	if (is_page('blog')) {
 		wp_enqueue_style('blog-style', get_template_directory_uri() . '/css/blog.css', array(), _S_VERSION);
 	}
-	if (is_front_page()) {
+	if (is_front_page() || is_archive()) {
 		wp_enqueue_script('gmap-js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVY9bdJtxFyjxthJGdsXG7G7A6jXPRFJg&&callback=initMap', array('site-js'), _S_VERSION, true);
 	}
 }

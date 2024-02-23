@@ -149,7 +149,6 @@ $cats = get_terms('product-category', [
 	}
 	?>
 </div>
-
 <?php
-// get_sidebar();
+include get_template_directory() . '/inc/contact.php';
 get_footer();
