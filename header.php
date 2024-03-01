@@ -12,8 +12,8 @@
 
 $menu_page = '/menu/';
 $story_page = '/our-story/';
-$vehicle_link = '#';
-$hollywood_link = '#';
+$vehicle_link = 'https://maps.app.goo.gl/QQdyqpk88Sy21ohT7';
+$hollywood_link = 'https://maps.app.goo.gl/K5AVCpTACB5uX4bQ6';
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
